@@ -18,3 +18,4 @@ server.get("/", (req, res) => {
 });
 
 server.use('/api/users', userRouter)
+module.exports = server
