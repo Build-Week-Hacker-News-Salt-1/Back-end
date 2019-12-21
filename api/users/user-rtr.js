@@ -11,15 +11,15 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.post('/', (req, res) => {
-    const newUser = {...req.body}
-    Users.add(newUser)
-    .then(nu => {
-        res.status(201).json(nu)
-    })
-    .catch(err => {
-        res.status(500).json({error: `internal service issue see ${err}`})
-    })
-})
+// router.post('/', (req, res) => {
+//     const newUser = {...req.body}
+//     Users.add(newUser)
+//     .then(nu => {
+//         res.status(201).json(nu)
+//     })
+//     .catch(err => {
+//         res.status(500).json({error: `internal service issue see ${err}`})
+//     })
+// })
 
 module.exports = router;
