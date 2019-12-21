@@ -10,7 +10,7 @@ const conRouter = require('./content/content-rtr')
 const server = express();
 
 server
-//   .use(helmet())
+  .use(helmet())
   .use(express.json())
   .use(cors())
   .use(morgan("combined"));
