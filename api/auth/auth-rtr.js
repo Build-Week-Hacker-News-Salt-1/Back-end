@@ -1,8 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const router = require('express').Router();
-const Users = require('../Users/usersModel');
-const { validateUser } = require("../Users/users-helpers");
+
+const Users = require('../users/u-db');
+const { validateUser } = require("../users/u-mids");
 
 router.post('/register', (req, res) => {
   let user = req.body;
@@ -50,7 +51,7 @@ router.post('/login', (req, res) => {
 function getJwtToken(username) {
   const payload = {
     username,
-    role: "student" 
+    role: "user" 
   };
 
   const secret = process.env.JWT_SECRET || "is it secret?";
