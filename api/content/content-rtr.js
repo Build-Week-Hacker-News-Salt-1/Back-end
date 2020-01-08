@@ -3,7 +3,7 @@ const hlpr = require('./content-db')
 const auth = require('../auth/auth-mid')
 const router = express.Router()
 
-router.get('/', auth, (req, res) => {
+router.get('/', (req, res) => {
     hlpr.find()
     .then(content => {
         res.status(200).json(content)
@@ -11,13 +11,13 @@ router.get('/', auth, (req, res) => {
     .catch(err => res.status(500).json({ error: `internal service issue see: ${err}`}))
 })
 
-router.get('/:id', auth, (req, res) => {
+router.get('/:id',  (req, res) => {
     hlpr.findById(req.params.id)
     .then(content => res.status(200).json(content))
     .catch(err => res.status(500).json({ error: `internal service issue see: ${err}`}))
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', (req, res) => {
 const id = req.params.id
 hlpr.deleter(id)
 .then(rem => {
@@ -33,5 +33,9 @@ hlpr.deleter(id)
 })
 
 //need post
+// router.add('./:id', (req, res) => {
+//     const id = req.params.id
+//     hlpr.add(id)
+// })
 
 module.exports = router
