@@ -21,7 +21,7 @@ function findById(u_id) {
     .where('c.save_id', '=', u_id)
     .first()
 }
-function add(nC) {
+function add(nC, id) {
     return db('content')
     .insert(nC, 'id')
     .then(nC => {

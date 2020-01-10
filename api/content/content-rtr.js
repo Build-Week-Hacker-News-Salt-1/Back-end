@@ -33,9 +33,21 @@ hlpr.deleter(id)
 })
 
 //need post
-// router.add('./:id', (req, res) => {
-//     const id = req.params.id
-//     hlpr.add(id)
-// })
+router.add('./:id', async (req, res) => {
+    let body = await bodyCheck(Object.keys(req.body), [originalPoster, content, commentPoster, rating, comment ]);
+     let id = req.params.id
+    if (body.valid) {
+        let post = {originalPoster, content, commentPoster, rating, comment} = request.body
+
+        try {
+            await helpr.add(post, id);
+            response.status(201).json({ message: "Saltiness added" });
+        } catch (err) {
+            response.status(500).json({ message: 'Internal service error' });
+        }
+    } else {
+        response.status(400).json({ message: body.message });
+    }
+})
 
 module.exports = router
